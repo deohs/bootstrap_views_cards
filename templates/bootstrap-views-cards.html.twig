@@ -1,0 +1,51 @@
+{#
+/**
+ * @file bootstrap-views-cards.html.twig
+ * Default simple view template to display Bootstrap 5 Cards.
+ *
+ *
+ * - rows: Contains a nested array of rows. Each row contains an array of
+ *   columns.
+ * - row.attributes: Class attributes to apply to each card.
+ * - attributes: Class attributes for the card group as a whole.
+ * - image_option: The configured option for modifying image placement.
+ *
+ * @ingroup views_templates
+ */
+#}
+
+<div {{ attributes }}>
+  {% for row in rows %}
+    <div class="col">
+      <div {{ row.attributes }}>
+        {% if row.header %}
+        <h5 class="card-header">
+          {{ row.header|striptags('<a><span><sup><sub>')|raw }}
+        </h5>
+        {% endif %}
+        {% if row.image and image_option != 'bottom' %}
+          <span class="{{ image_option == 'background' ? 'card-img' : 'card-img-top' }}">{{ row.image }}</span>
+        {% endif %}
+        <div {{ body_attributes }}>
+          {% if row.title %}
+            <h5 class="card-title">{{ row.title|striptags('<a><span><sup><sub>')|raw }}</h5>
+          {% endif %}
+          {% if row.subtitle %}
+            <h6 class="card-subtitle">{{ row.subtitle|striptags('<a><span><sup><sub>')|raw }}</h6>
+          {% endif %}
+          {% if row.content %}
+            {{- row.content -}}
+          {% endif %}
+        </div>
+        {% if row.image and image_option == 'bottom' %}
+          <span class="card-img-bottom">{{ row.image }}</span>
+        {% endif %}
+        {% if row.footer %}
+        <div class="card-footer">
+          {{ row.footer }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  {%- endfor %}
+</div>

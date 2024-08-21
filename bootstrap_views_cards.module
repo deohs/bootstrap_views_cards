@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Custom functions for Bootstrap Views Cards.
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Prepares variables for views cards templates.
+ *
+ * Default template: bootstrap-views-cards.html.twig.
+ *
+ * @param array $vars
+ *   An associative array containing:
+ *   - view: A ViewExecutable object.
+ *   - rows: The raw row data.
+ */
+function template_preprocess_bootstrap_views_cards(array &$vars): void {
+  $view = $vars['view'];
+  $id = $view->storage->id() . '-' . $view->current_display;
+  $vars['id'] = Html::getUniqueId('bootstrap-views-cards-' . $id);
+
+  $vars['attributes'] = new Attribute(['class' => ['row', 'row-cols-1']]);
+  $cols = $view->style_plugin->options['card_group_columns'];
+  if ($cols > 1) {
+    switch ($cols) {
+      case 2:
+        $vars['attributes']->addClass('row-cols-sm-2');
+        break;
+
+      case 3:
+        $vars['attributes']->addClass('row-cols-sm-2 row-cols-md-3');
+        break;
+
+      case 4:
+        $vars['attributes']->addClass('row-cols-sm-2 row-cols-md-4');
+        break;
+    }
+  }
+
+  $options = $view->style_plugin->options;
+  if ($options['card_group_class_custom']) {
+    $option_classes = array_filter(explode(' ', $options['card_group_class_custom']));
+    $classes = array_map([Html::class, 'cleanCssIdentifier'], $option_classes);
+    $vars['attributes']->addClass($classes);
+  }
+
+  $vars['image_option'] = $view->style_plugin->options['card_image_option_field'];
+  $bodyClass = $vars['image_option'] == 'background' ? 'card-img-overlay' : 'card-body';
+  $vars['body_attributes'] = new Attribute(['class' => [$bodyClass]]);
+
+  // Card rows.
+  $header = $view->style_plugin->options['card_header_field'];
+  $image = $view->style_plugin->options['card_image_field'];
+  $title = $view->style_plugin->options['card_title_field'];
+  $subtitle = $view->style_plugin->options['card_subtitle_field'];
+  $content = $view->style_plugin->options['card_body_field'];
+  $footer = $view->style_plugin->options['card_footer_field'];
+
+  foreach ($vars['rows'] as $id => $row) {
+    $vars['rows'][$id] = [];
+    $vars['rows'][$id]['header'] = $view->style_plugin->getField($id, $header);
+    $vars['rows'][$id]['image'] = $view->style_plugin->getField($id, $image);
+    $vars['rows'][$id]['title'] = $view->style_plugin->getField($id, $title);
+    $vars['rows'][$id]['subtitle'] = $view->style_plugin->getField($id, $subtitle);
+    $vars['rows'][$id]['content'] = $view->style_plugin->getField($id, $content);
+    $vars['rows'][$id]['footer'] = $view->style_plugin->getField($id, $footer);
+    $vars['rows'][$id]['attributes'] = new Attribute(['class' => ['card', 'h-100']]);
+    if ($row_class = $view->style_plugin->getRowClass($id)) {
+      $vars['rows'][$id]['attributes']->addClass($row_class);
+    }
+
+  }
+}

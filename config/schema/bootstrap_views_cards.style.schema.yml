@@ -1,0 +1,31 @@
+views.style.bootstrap_views_cards:
+  type: views_style
+  label: 'Bootstrap views cards'
+  mapping:
+    card_header_field:
+      type: label
+      label: "Card header field"
+    card_title_field:
+      type: label
+      label: "Card title field"
+    card_subtitle_field:
+      type: label
+      label: "Card subtitle field"
+    card_body_field:
+      type: label
+      label: "Card body field"
+    card_image_field:
+      type: label
+      label: "Card image field"
+    card_image_option_field:
+      type: label
+      label: "Card image option field"
+    card_footer_field:
+      type: label
+      label: "Card footer field"
+    card_group_class_custom:
+      type: label
+      label: "Custom card group class"
+    card_group_columns:
+      type: label
+      label: "Cards per row"

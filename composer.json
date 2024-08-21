@@ -1,0 +1,26 @@
+{
+    "name": "drupal/bootstrap_views_cards",
+    "description": "Adds a views plugin to render outputs as Bootstrap 5 cards.",
+    "type": "drupal-module",
+    "homepage": "https://github.com/deohs/bootstrap_views_cards",
+    "authors": [
+        {
+            "name": "Thomas Kiehne (tkiehne)",
+            "email": "tkiehne@uw.edu",
+            "homepage": "https://www.drupal.org/u/tkiehne",
+            "role": "Creator"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/deohs/bootstrap_views_cards/issues",
+        "source": "https://github.com/deohs/bootstrap_views_cards"
+    },
+    "require": {
+        "php": ">=8.1"
+    },
+    "conflict": {
+        "drush/drush": "<10.2"
+    },
+    "license": "GPL-3.0-or-later",
+    "minimum-stability": "dev"
+}
