@@ -23,7 +23,7 @@ function template_preprocess_bootstrap_views_cards(array &$vars): void {
   $id = $view->storage->id() . '-' . $view->current_display;
   $vars['id'] = Html::getUniqueId('bootstrap-views-cards-' . $id);
 
-  $vars['attributes'] = new Attribute(['class' => ['row', 'row-cols-1']]);
+  $vars['attributes'] = new Attribute(['class' => ['row', 'g-3', 'row-cols-1']]);
   $cols = $view->style_plugin->options['card_group_columns'];
   if ($cols > 1) {
     switch ($cols) {
@@ -37,6 +37,14 @@ function template_preprocess_bootstrap_views_cards(array &$vars): void {
 
       case 4:
         $vars['attributes']->addClass('row-cols-sm-2 row-cols-md-4');
+        break;
+
+      case 5:
+        $vars['attributes']->addClass('row-cols-sm-3 row-cols-md-5');
+        break;
+
+      case 6:
+        $vars['attributes']->addClass('row-cols-sm-3 row-cols-md-6');
         break;
     }
   }

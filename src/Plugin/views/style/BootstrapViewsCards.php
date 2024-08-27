@@ -160,6 +160,8 @@ class BootstrapViewsCards extends StylePluginBase {
         2 => 2,
         3 => 3,
         4 => 4,
+        5 => 5,
+        6 => 6,
       ],
       '#required' => TRUE,
       '#default_value' => $this->options['card_group_columns'],
