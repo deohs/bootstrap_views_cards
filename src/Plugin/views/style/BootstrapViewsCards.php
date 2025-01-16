@@ -45,7 +45,6 @@ class BootstrapViewsCards extends StylePluginBase {
    */
   protected function defineOptions() {
     $options = parent::defineOptions();
-    unset($options['grouping']);
     $options['card_header_field'] = ['default' => NULL];
     $options['card_image_field'] = ['default' => NULL];
     $options['card_image_option_field'] = ['default' => 'top'];
@@ -63,7 +62,6 @@ class BootstrapViewsCards extends StylePluginBase {
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
-    unset($form['grouping']);
     $form['help'] = [
       '#markup' => $this->t('The Bootstrap cards displays content in a flexible container (<a href=":docs">see documentation</a>). Note that any fields not assigned below will not be displayed.',
         [':docs' => 'https://getbootstrap.com/docs/5.0/components/card/']),
