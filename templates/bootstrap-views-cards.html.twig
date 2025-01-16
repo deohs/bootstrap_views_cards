@@ -22,19 +22,19 @@
     <div class="col">
       <div {{ row.attributes }}>
         {% if row.header %}
-        <h5 class="card-header">
+        <p class="card-header h5">
           {{ row.header|striptags('<a><span><sup><sub>')|raw }}
-        </h5>
+        </p>
         {% endif %}
         {% if row.image and image_option != 'bottom' %}
           <span class="{{ image_option == 'background' ? 'card-img' : 'card-img-top' }}">{{ row.image }}</span>
         {% endif %}
         <div {{ body_attributes }}>
           {% if row.title %}
-            <h5 class="card-title">{{ row.title|striptags('<a><span><sup><sub>')|raw }}</h5>
+            <p class="card-title h5">{{ row.title|striptags('<a><span><sup><sub>')|raw }}</p>
           {% endif %}
           {% if row.subtitle %}
-            <h6 class="card-subtitle">{{ row.subtitle|striptags('<a><span><sup><sub>')|raw }}</h6>
+            <p class="card-subtitle h6">{{ row.subtitle|striptags('<a><span><sup><sub>')|raw }}</p>
           {% endif %}
           {% if row.content %}
             {{- row.content -}}
