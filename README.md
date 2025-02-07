@@ -5,7 +5,7 @@ Adds a views plugin to render outputs as Bootstrap 5 cards
 ## Requirements
 
 - Views (Drupal core)
-- Bootstrasp 5 based theme (technically optional - you can implement your own styling if you prefer)
+- Bootstrap 5 based theme (technically optional - you can implement your own styling if you prefer)
 
 ## Features
 

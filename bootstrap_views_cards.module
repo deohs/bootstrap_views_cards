@@ -83,3 +83,21 @@ function template_preprocess_bootstrap_views_cards(array &$vars): void {
 
   }
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ *
+ * Add views template suggestions.
+ *
+ * @inheritdoc
+ */
+function bootstrap_views_cards_theme_suggestions_bootstrap_views_cards(array $variables) {
+  $view = $variables['view'];
+
+  $suggestions = [];
+
+  $suggestions[] = 'bootstrap_views_cards__' . $view->id();
+  $suggestions[] = sprintf('bootstrap_views_cards__%s__%s', $view->id(), $view->getDisplay()->display['id']);
+
+  return $suggestions;
+}
